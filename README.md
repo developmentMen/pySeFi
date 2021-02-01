@@ -30,6 +30,8 @@ diria que todos los formatos de archivos son admitidos, aun no encontre ningun i
 - .zip
 - .tar
 - .c
+- .mp4
+- .mp3
 - ...
 
 ---
