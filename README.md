@@ -4,7 +4,7 @@
 
 #### `PySeFi` es una simple aplicacion escrita en python que mediante sockets envia un archivo de **imagen, video, audio, texto o varios archivos en un comprimido** a otra computadora de la misma red mediante la ip y sin *necesidad de conexion a internet*.
 
-## `en sistemas Linux es recomendable primero editar el archivo * /etc/hosts * para poder ver la ip sin problema`
+## `en sistemas Linux es recomendable primero editar el archivo` **/etc/hosts** `para poder ver la ip sin problema`
 ![edit hosts file](img/editHosts.png)
 
 ## Como se usa?
@@ -30,7 +30,7 @@ diria que todos los formatos de archivos son admitidos, aun no encontre ningun i
 - .zip
 - .tar
 - .c
-y un largo etcetera...
+- ...
 
 ---
 
