@@ -4,6 +4,8 @@
 programa simple para enviar archivos
 """
 import socket
+def banner():
+	return "  ___      ___      ___ _ \n | _ \_  _/ __| ___| __(_)\n |  _/ || \__ \/ -_) _|| |\n |_|  \_, |___/\___|_| |_|\n      |__/                "
 
 def conectar(s):
 	con, addr = s.accept()
@@ -37,16 +39,10 @@ def main():
 	s.listen(3)
 	print("servidor esperando --> {}".format(socket.gethostbyname(socket.gethostname())))
 	con = conectar(s) 
-	#try:
 	recibir(con)
-	#except :
-		#pass
 	
 	cerrar(con, s)
 
-def banner():
-	ban="  ___      ___      ___ _ \n | _ \_  _/ __| ___| __(_)\n |  _/ || \__ \/ -_) _|| |\n |_|  \_, |___/\___|_| |_|\n      |__/                "
-	return ban
 
 if __name__=='__main__':
 	main()

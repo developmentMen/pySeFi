@@ -8,8 +8,7 @@ import sys
 import time
 
 def banner():
-	ban="  ___      ___      ___ _ \n | _ \_  _/ __| ___| __(_)\n |  _/ || \__ \/ -_) _|| |\n |_|  \_, |___/\___|_| |_|\n      |__/                "
-	return ban
+	return "  ___      ___      ___ _ \n | _ \_  _/ __| ___| __(_)\n |  _/ || \__ \/ -_) _|| |\n |_|  \_, |___/\___|_| |_|\n      |__/                "
 
 def enviar(s, filename):
 	s.send(filename.encode())
@@ -25,13 +24,10 @@ def enviar(s, filename):
 
 def main():
 	print(banner()+'\n\t\t\tby developmentMen\n')
+
 	s = socket.socket()
 	s.connect((sys.argv[1], 6333))
-	#try:
 	enviar(s, sys.argv[2])
-	#except :
-		#print("an error was ocurred")
-		#pass
 
 	s.close()
 
@@ -39,6 +35,5 @@ def main():
 if __name__=='__main__':
 	try:
 	 	main()
-	except:
-	 	ModoDeUso = "uso: \t PySeFi [ip-server] [archivo]"
-	 	print (ModoDeUso)
+	except Exception as e:
+	 	print ("uso: \t PySeFi [ip-server] [archivo]")
