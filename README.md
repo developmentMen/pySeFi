@@ -27,12 +27,19 @@ diria que todos los formatos de archivos son admitidos, aun no encontre ningun i
 - .png
 - .pdf
 - .txt
+- .md
+- .srt
 - .zip
 - .tar
 - .c
 - .mp4
+- .mkv
 - .mp3
 - ...
+
+## problemas
+- .avi
+	(se pierden o daña la imagen tanto en fichero como en comprimido) 
 
 ---
 
