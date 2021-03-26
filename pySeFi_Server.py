@@ -4,6 +4,8 @@
 programa simple para enviar archivos
 """
 import socket
+import sys
+
 def banner():
 	return "  ___      ___      ___ _ \n | _ \_  _/ __| ___| __(_)\n |  _/ || \__ \/ -_) _|| |\n |_|  \_, |___/\___|_| |_|\n      |__/                "
 
@@ -35,9 +37,9 @@ def main():
 
 	s = socket.socket()
 
-	s.bind((socket.gethostname(), 6333))
+	s.bind((sys.argv[1], 6333))
 	s.listen(3)
-	print("servidor esperando --> {}".format(socket.gethostbyname(socket.gethostname())))
+	print("servidor esperando --> {}".format(sys.argv[1]))
 	con = conectar(s) 
 	recibir(con)
 	
@@ -45,4 +47,7 @@ def main():
 
 
 if __name__=='__main__':
-	main()
+	try:
+	 	main()
+	except Exception as e:
+	 	print ("uso: \t PySeFi_Server [ip-server]")
