@@ -8,13 +8,13 @@
 
 ### inicia servidor
 se inicia el *socket server* desde la computadora que quiere **recibir el archivo**
-> python pySeFi_Server.py [ip]
+' python pySeFi_Server.py [ip]'
 
 ![inica el servidor](img/serverWin.png)
 
 ### enviando...
 desde la computadora encargada de **enviar el archivo**
-> python pySeFi_Server [la ip destino] [el archivo]
+'python pySeFi_Server [la ip destino] [el archivo]'
 
 ![servidor windows](img/EnviadoWin.png)
 
