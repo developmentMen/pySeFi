@@ -3,7 +3,7 @@
 # =============================
 # Author	--> devMen
 # Date created	--> 01/04/2021
-# Last modified	--> 01/04/2021
+# Last modified	--> 05/04/2021
 # Version	--> Python 3.8.5
 # =============================
 """
@@ -14,6 +14,7 @@ programa simple para enviar archivos
 # Imports
 import socket
 import sys
+import argparse
 # =============================
 '''
 this work in linux
@@ -24,7 +25,14 @@ print(ips.decode())
 
 '''
 def banner():
-	return "  ___      ___      ___ _ \n | _ \_  _/ __| ___| __(_)\n |  _/ || \__ \/ -_) _|| |\n |_|  \_, |___/\___|_| |_|\n      |__/                "
+	return """
+  ___      ___      ___ _ 
+ | _ \_  _/ __| ___| __(_)
+ |  _/ || \__ \/ -_) _|| |
+ |_|  \_, |___/\___|_| |_|
+      |__/                
+===> by ☆ developmentMen☆
+"""
 
 def conectar(s):
 	con, addr = s.accept()
@@ -50,13 +58,11 @@ def cerrar(con, s):
 	s.close()
 
 def main():
-	print(banner()+'\n\t\tby developmentMen')
-
 	s = socket.socket()
 
-	s.bind((sys.argv[1], 6333))
+	s.bind((args.ipAddress, args.port))
 	s.listen(3)
-	print("servidor esperando --> {}".format(sys.argv[1]))
+	print("servidor esperando --> {}".format(args.ipAddress))
 	con = conectar(s)
 	recibir(con)
 
@@ -64,7 +70,24 @@ def main():
 
 
 if __name__=='__main__':
+	argument = argparse.ArgumentParser(
+		description="PySefi server to recive a file")
+	g = argument.add_mutually_exclusive_group()
+	g.add_argument('-nb', '--noBanner', action='store_true',
+		help="no print banner")
+	argument.add_argument(
+		'-i', '--ipAddress', type=str, required=True,
+		metavar="", help="ip to up a server")
+	argument.add_argument(
+		'-p', '--port', type=int, metavar='',default=6333,
+		help="Port 1024 to 65535 -> default=6333")
+	args = argument.parse_args()
+
+	if not args.noBanner: print(banner())
 	try:
 	 	main()
 	except Exception as e:
-	 	print ("uso: \t PySeFi_Server [ip-server]")
+		print('=======ERROR======ERROR=======ERROR=======')
+		print(e)
+		print('=======ERROR======ERROR=======ERROR=======')
+

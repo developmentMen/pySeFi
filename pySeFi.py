@@ -3,7 +3,7 @@
 # =============================
 # Author	--> devMen
 # Date created	--> 01/04/2021
-# Last modified	--> 01/04/2021
+# Last modified	--> 05/04/2021
 # Version	--> Python 3.8.5
 # =============================
 """
@@ -15,10 +15,19 @@ programa simple para enviar archivos
 import socket
 import sys
 import time
+import argparse
+
 # =============================
 
 def banner():
-	return "  ___      ___      ___ _ \n | _ \_  _/ __| ___| __(_)\n |  _/ || \__ \/ -_) _|| |\n |_|  \_, |___/\___|_| |_|\n      |__/                "
+	return """
+  ___      ___      ___ _ 
+ | _ \_  _/ __| ___| __(_)
+ |  _/ || \__ \/ -_) _|| |
+ |_|  \_, |___/\___|_| |_|
+      |__/               
+===> by ☆ developmentMen☆
+ """
 
 def enviar(s, filename):
 	s.send(filename.encode())
@@ -33,17 +42,34 @@ def enviar(s, filename):
 	print("archivo enviado con exito")
 
 def main():
-	print(banner()+'\n\t\t\tby developmentMen\n')
-
 	s = socket.socket()
-	s.connect((sys.argv[1], 6333))
-	enviar(s, sys.argv[2])
+	s.connect((args.ipAddress, args.port))
+	enviar(s, args.file)
 
 	s.close()
 
 
 if __name__=='__main__':
+	argumentos = argparse.ArgumentParser(
+		description="Python file sender")
+	g = argumentos.add_mutually_exclusive_group()
+	g.add_argument('-nb', '--noBanner', action='store_true',
+		help="no print banner")
+	argumentos.add_argument(
+		'-i', '--ipAddress', type=str, required=True, metavar="",
+		help="ip PySeFi Server")
+	argumentos.add_argument(
+		'-p', '--port', type=int, metavar='',
+		default=6333, help='Port 1024 to 65535 -> default=6333')
+	argumentos.add_argument(
+		'-f', '--file', type=str, required=True, metavar="",
+		help="file to send")
+	args = argumentos.parse_args()
+
+	if not args.noBanner: print(banner())
 	try:
 	 	main()
 	except Exception as e:
-	 	print ("uso: \t PySeFi [ip-server] [archivo]")
+		print('=======ERROR======ERROR=======ERROR=======')
+		print(e)
+		print('=======ERROR======ERROR=======ERROR=======')
